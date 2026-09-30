@@ -4,7 +4,7 @@ import Home from "./pages/HomePage";
 import AddProductPage from "./pages/AddProductPage";
 import Navbar from "./components/Navbar";
 import NotFoundPage from "./pages/NotFoundPage";
-import ProductPage from "./pages/ProductPage"
+import ProductPage from "./pages/ProductPage";
 
 const App = () => {
   return (

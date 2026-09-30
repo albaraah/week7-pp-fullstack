@@ -8,6 +8,19 @@ const ProductPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const deleteProduct = async (productId) => {
+        try {
+            const res = await fetch(`/api/products/${productId}`, {
+                method: "DELETE",
+            });
+            if (!res.ok) {
+                throw new Error("Failed to delete product");
+            }
+        } catch (error) {
+            console.error("Error deleting product:", error);
+        }
+    };
+
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -31,8 +44,18 @@ const ProductPage = () => {
         navigate("/");
     };
 
+    const onDeleteClick = (productId) => {
+        const confirm = window.confirm(
+            "Are you sure you want to delete this product?"
+        );
+        if (!confirm) return;
+
+        deleteProduct(productId);
+        navigate("/");
+    };
+
     return (
-        <div>
+        <div className="product-preview">
             {loading ? (
                 <p>Loading...</p>
             ) : error ? (
@@ -50,6 +73,8 @@ const ProductPage = () => {
                     <p>Supplier Phone #: {product.supplier.contactPhone}</p>
                     <p>Verified Status: {product.supplier.isVerified ? "Yes" : "No"}</p>
                     <button onClick={() => handleGoHome()}>Back</button>
+                    <br></br>
+                    <button onClick={() => onDeleteClick(product._id)}>Delete</button>
                 </>
             )}
         </div>
