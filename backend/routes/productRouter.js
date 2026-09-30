@@ -8,12 +8,16 @@ const{
     updateProduct
 } = require("../controllers/productController");
 
+const requireAuth = require("../middleware/requireAuth");
 const router = express.Router();
 
-router.post("/", createProduct);
-router.get("/", getAllProducts);
-router.delete("/:productId", deleteProduct);
 router.get("/:productId", getProductById);
+router.get("/", getAllProducts);
+
+router.use(requireAuth);
+
+router.post("/", createProduct);
+router.delete("/:productId", deleteProduct);
 router.put("/:productId", updateProduct);
 
 module.exports = router;
