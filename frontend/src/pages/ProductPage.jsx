@@ -73,8 +73,8 @@ const ProductPage = () => {
                     <p>Supplier Phone #: {product.supplier.contactPhone}</p>
                     <p>Verified Status: {product.supplier.isVerified ? "Yes" : "No"}</p>
                     <button onClick={() => handleGoHome()}>Back</button>
-                    <br></br>
                     <button onClick={() => onDeleteClick(product._id)}>Delete</button>
+                    <button onClick={() => navigate(`/edit/${product._id}`)}>Edit</button>
                 </>
             )}
         </div>
