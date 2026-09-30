@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductPage from "./pages/ProductPage";
 import EditProductPage from "./pages/EditProductPage";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
               element={<ProductPage />}
             />
             <Route path="/edit/:id" element={<EditProductPage />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
       </BrowserRouter>

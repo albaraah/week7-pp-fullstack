@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const ProductListing = ({ product }) => {
     return (
-        <div>
+        <div className="product-preview">
             <h2>
                 <Link to={`/products/${product.id}`}>{product.productName}</Link>
             </h2>

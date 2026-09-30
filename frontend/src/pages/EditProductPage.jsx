@@ -84,8 +84,8 @@ const EditProductPage = () => {
     }
 
     return (
-        <div className="product-preview">
-            <h2>Add a New product</h2>
+        <div className="create">
+            <h2>Update product</h2>
             <form onSubmit={submitForm}>
                 <label>Product Name:</label>
                 <input
@@ -156,7 +156,7 @@ const EditProductPage = () => {
                     <option value="false">No</option>
                 </select>
 
-                <button>Add Job</button>
+                <button>Save Update</button>
             </form>
         </div>
     );
