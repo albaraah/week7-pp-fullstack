@@ -12,6 +12,7 @@
 .navbar button { margin-left: 16px; text-decoration: none; padding: 10px; background-color: white; border-radius: 10px;}
 .navbar a:hover { color: #65a3e5; }
 .navbar button:hover { color: #65a3e5; }
+
 .content { max-width: 600px; margin: 40px auto; padding: 20px; }
 
 .product-list { display: flex; flex-direction: column; gap: 20px; padding: 20px; background-color: #f9f9f9; }

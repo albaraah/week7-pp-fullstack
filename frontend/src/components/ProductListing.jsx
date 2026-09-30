@@ -9,8 +9,8 @@ const ProductListing = ({ product }) => {
             <p>Category: {product.category}</p>
             <p>Description: {product.description}</p>
             <p>Price: {product.price}</p>
-            <h4>Supplier:</h4>
             <p>Inventory: {product.inventoryCount}</p>
+            <h4>Supplier:</h4>
             <p>Supplier Name: {product.supplier.name}</p>
             <p>Supplier Email: {product.supplier.contactEmail}</p>
             <p>Supplier Phone #: {product.supplier.contactPhone}</p>

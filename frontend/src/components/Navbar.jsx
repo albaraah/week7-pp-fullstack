@@ -12,7 +12,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
         {isAuthenticated && (
           <div>
             <Link to="/add-product">Add Product</Link>
-            <span>{JSON.parse(localStorage.getItem("user")).email}</span>
+            <a><span>Welcome {JSON.parse(localStorage.getItem("user")).email}!</span></a>
             <button onClick={handleClick}>Log out</button>
           </div>
         )}

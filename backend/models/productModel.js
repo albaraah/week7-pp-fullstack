@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
-  // user_id: {
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     required: true,
-  //     ref: "User",
-  //   },
+  user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
     productName: { type: String, required: true},
     category: { type: String, required: true},
     description: { type: String, required: true},

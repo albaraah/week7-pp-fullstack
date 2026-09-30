@@ -3,56 +3,55 @@ const mongoose = require("mongoose");
 
 // POST /products
 const createProduct = async (req, res) => {
-
-    // try {
-  //   const user_id = req.user._id;
-  //   const newProduct = new Product({
-  //     ...req.body,
-  //     user_id,
-  //   });
-  //   await newProduct.save();
-  //   res.status(201).json(newProduct);
+  try {
+    const user_id = req.user._id;
+    const newProduct = new Product({
+      ...req.body,
+      user_id,
+    });
+    await newProduct.save();
+    res.status(201).json(newProduct);
+  } catch (error) {
+    console.error("Error creating Product:", error);
+    res.status(500).json({ error: "Server Error" });
+  }
+  // try {
+  //     const newProduct = await Product.create({ ...req.body });
+  //     res.status(201).json(newProduct);
   // } catch (error) {
-  //   console.error("Error creating Product:", error);
-  //   res.status(500).json({ error: "Server Error" });
+  //     res
+  //         .status(400)
+  //         .json({ message: "Failed to create product", error: error.message });
   // }
-    try {
-        const newProduct = await Product.create({ ...req.body });
-        res.status(201).json(newProduct);
-    } catch (error) {
-        res
-            .status(400)
-            .json({ message: "Failed to create product", error: error.message });
-    }
 };
 
 // GET /products
 const getAllProducts = async (req, res) => {
-    try {
-        const products = await Product.find({}).sort({ createdAt: -1 });
-        res.status(200).json(products);
-    } catch (error) {
-        res.status(500).json({ message: "Failed to retrieve products" });
-    }
+  try {
+    const products = await Product.find({}).sort({ createdAt: -1 });
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to retrieve products" });
+  }
 };
 
 // DELETE /products
 const deleteProduct = async (req, res) => {
-    const { productId } = req.params;
+  const { productId } = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(productId)) {
-        return res.status(404).json({ message: "Invalid product ID" });
+  if (!mongoose.Types.ObjectId.isValid(productId)) {
+    return res.status(404).json({ message: "Invalid product ID" });
+  }
+  try {
+    const deletedProduct = await Product.findOneAndDelete({ _id: productId });
+    if (deletedProduct) {
+      res.status(204).send();
+    } else {
+      res.status(404).json({ message: "Product not found" });
     }
-    try {
-        const deletedProduct = await Product.findOneAndDelete({ _id: productId });
-        if (deletedProduct) {
-            res.status(204).send(); 
-        } else {
-            res.status(404).json({ message: "Product not found" });
-        }
-    } catch (error) {
-        res.status(500).json({ message: "Failed to delete product" });
-    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to delete product" });
+  }
 };
 
 // GET /products/:productId
@@ -85,9 +84,9 @@ const updateProduct = async (req, res) => {
 
   try {
     const updatedproduct = await Product.findOneAndUpdate(
-        { _id: productId},
-        { ...req.body},
-        { returnDocument: "after"}
+      { _id: productId },
+      { ...req.body },
+      { returnDocument: "after" }
     );
     if (updatedproduct) {
       res.status(200).json(updatedproduct);
@@ -100,9 +99,9 @@ const updateProduct = async (req, res) => {
 };
 
 module.exports = {
-    createProduct,
-    getAllProducts,
-    deleteProduct,
-    getProductById,
-    updateProduct
+  createProduct,
+  getAllProducts,
+  deleteProduct,
+  getProductById,
+  updateProduct
 };
