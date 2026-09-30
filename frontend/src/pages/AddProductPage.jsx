@@ -12,15 +12,19 @@ const AddProductPage = () => {
   const [supplierContactPhone, setSupplierContactPhone] = useState("");
   const [isVerified, setIsVerified] = useState("true");
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = user ? user.token : null;
 
   const navigate = useNavigate();
- 
+
   const addProduct = async (newProduct) => {
     try {
       const res = await fetch("/api/products", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+
         },
         body: JSON.stringify(newProduct),
       });
@@ -53,7 +57,7 @@ const AddProductPage = () => {
 
     addProduct(newProduct);
     console.log(newProduct);
-    
+
     return navigate("/");
   };
 
@@ -68,12 +72,12 @@ const AddProductPage = () => {
           value={productName}
           onChange={(e) => setProductName(e.target.value)}
         />
-        
+
         <label>Category:</label>
         <input
           type="text"
           required
-          value={category} 
+          value={category}
           onChange={(e) => setCategory(e.target.value)}
         />
 
@@ -126,8 +130,8 @@ const AddProductPage = () => {
 
         <label>Verification:</label>
         <select required value={isVerified} onChange={(e) => setIsVerified(e.target.value)}>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
         </select>
 
         <button>Add Job</button>
