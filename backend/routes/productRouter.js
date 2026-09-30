@@ -14,7 +14,7 @@ const router = express.Router();
 router.get("/:productId", getProductById);
 router.get("/", getAllProducts);
 
-router.use(requireAuth);
+//router.use(requireAuth);
 
 router.post("/", createProduct);
 router.delete("/:productId", deleteProduct);
