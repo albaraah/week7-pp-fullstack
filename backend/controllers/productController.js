@@ -15,6 +15,14 @@ const createProduct = async (req, res) => {
     console.error("Error creating Product:", error);
     res.status(500).json({ error: "Server Error" });
   }
+  // try {
+  //     const newProduct = await Product.create({ ...req.body });
+  //     res.status(201).json(newProduct);
+  // } catch (error) {
+  //     res
+  //         .status(400)
+  //         .json({ message: "Failed to create product", error: error.message });
+  // }
 };
 
 // GET /products
