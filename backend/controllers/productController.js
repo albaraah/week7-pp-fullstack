@@ -55,10 +55,34 @@ const getProductById = async (req, res) => {
     if (product) {
       res.status(200).json(product);
     } else {
-      res.status(404).json({ message: "product not found" });
+      res.status(404).json({ message: "Product not found" });
     }
   } catch (error) {
     res.status(500).json({ message: "Failed to retrieve product" });
+  }
+};
+
+// PUT /products/:productId
+const updateProduct = async (req, res) => {
+  const { productId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(productId)) {
+    return res.status(404).json({ message: "Invalid product ID" });
+  }
+
+  try {
+    const updatedproduct = await Product.findOneAndUpdate(
+        { _id: productId},
+        { ...req.body},
+        { returnDocument: "after"}
+    );
+    if (updatedproduct) {
+      res.status(200).json(updatedproduct);
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update product" });
   }
 };
 
@@ -66,5 +90,6 @@ module.exports = {
     createProduct,
     getAllProducts,
     deleteProduct,
-    getProductById
+    getProductById,
+    updateProduct
 };
