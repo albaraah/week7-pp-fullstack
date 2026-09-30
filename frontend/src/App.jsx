@@ -4,6 +4,7 @@ import Home from "./pages/HomePage";
 import AddProductPage from "./pages/AddProductPage";
 import Navbar from "./components/Navbar";
 import NotFoundPage from "./pages/NotFoundPage";
+import ProductPage from "./pages/ProductPage"
 
 const App = () => {
   return (
@@ -15,6 +16,10 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/add-product" element={<AddProductPage />} />
             <Route path="*" element={<NotFoundPage />} />
+            <Route
+              path='/products/:id'
+              element={<ProductPage/>}
+            />
           </Routes>
         </div>
       </BrowserRouter>
